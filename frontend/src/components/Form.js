@@ -104,7 +104,7 @@ const Form = (props) => {
         </div>
         <button className="submit-button">Submit</button>
       </form>
-      <form action="/action_page.php" onSubmit={(e) => this.submitForm(e)}>
+      <form action="/action_page.php" onSubmit={(e) => submitForm(e)}>
         <div className="expense-spacing">
           <label className="labels" for="Income">
             Income

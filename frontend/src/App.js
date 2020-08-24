@@ -95,7 +95,7 @@ const App = () => {
             <Route
               exact
               path="/add-transactions"
-              render={(props) => <Form {...props} userId={this.state} />}
+              render={(props) => <Form {...props} />}
             />
             <Route
               exact
