@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
+
+$primaryColor: #0a0a0a;
+$secondaryColor: #aed3f0;
+$thirdColor: #f1f1f1;
+$fourthColor: #ffffff;
+$primary_font_family: "Noto Sans JP";
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+}

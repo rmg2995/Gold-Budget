@@ -10,6 +10,10 @@ import actions from "./api/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import Navbar from "./components/nav/Navbar";
+import Form from "./components/Form";
+import Transactions from "./components/Transactions";
+import MeetTeam from "./components/MeetTeam";
 const App = () => {
   
   let [user, setUser] = useState(null)
@@ -34,7 +38,82 @@ const App = () => {
   return(
     <TheContext.Provider value={{ history, user, setUser }}>
 
-      {user?.email}
+<div className="form-body">
+          <Navbar />
+          {/* <Form userId={this.state}></Form> */}
+
+          {/* {this.state.email} */}
+          <nav>
+            {/* <NavLink to="/">Home |</NavLink> */}
+
+            {user ? (
+              <Fragment>
+                <h3>Welcome Back, {user.email}!</h3>
+                <NavLink className="nav-links" onClick={logOut} to="/">
+                  Log Out
+                </NavLink>
+                {/* <NavLink className="nav-links" to="/profile">
+                  {" "}
+                  P
+                </NavLink> */}
+              </Fragment>
+            ) : (
+              <Fragment>
+                <NavLink className="nav-links" to="/sign-up">
+                  Sign Up |
+                </NavLink>
+                <NavLink className="nav-links" to="/log-in">
+                  Log In{" "}
+                </NavLink>
+              </Fragment>
+            )}
+            <br />
+            {/* {!user.email && <GoogleAuth setUser={setUser(user)} />}       ?????????????
+            {!user.email && <GoogleAuthLogin setUser={setUser(user)} />} */}   
+          </nav>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => <Home {...props} userId={user} />}
+            />
+            <Route
+              exact
+              path="/sign-up"
+              render={(props) => <SignUp {...props} />}
+            />
+            <Route
+              exact
+              path="/log-in"
+              render={(props) => <LogIn {...props} />}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={(props) => <Profile {...props} user={this.state} />}
+            />
+            <Route
+              exact
+              path="/add-transactions"
+              render={(props) => <Form {...props} userId={this.state} />}
+            />
+            <Route
+              exact
+              path="/transactions"
+              render={(props) => (
+                <Transactions
+                  {...props}
+                  user={this.state}
+                  passData={this.passData}
+                />
+              )}
+            />
+            <Route exact path="/meet-team" render={() => <MeetTeam />} />
+            <Route component={NotFound} />
+          </Switch>
+      </div>
+
+      {/* {user?.email}
       <nav>
         <NavLink to="/">Home</NavLink>
 
@@ -73,7 +152,7 @@ const App = () => {
         <Route component={NotFound} />
       </Switch>
       {!user && <GoogleAuth setUser={setUser} />}
-      {!user && <GoogleAuthLogin setUser={setUser} />}
+      {!user && <GoogleAuthLogin setUser={setUser} />} */}
 
       <NotificationContainer />
 

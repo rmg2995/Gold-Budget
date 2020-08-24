@@ -11,7 +11,7 @@ const session = require('express-session');
 const passport = require('./config/passport');
 
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/deploymentExample'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/deploymentExample2'
 console.log('Connecting DB to ', MONGODB_URI)
 
 mongoose
@@ -27,7 +27,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000", "https://clientnetlify.netlify.app"] //Swap this with the client url 
+    origin: ["http://localhost:3000"] //Swap this with the client url 
   })
 );
 

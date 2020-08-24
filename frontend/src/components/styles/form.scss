@@ -1,0 +1,102 @@
+@import "../breakpoints/breakpoints.scss";
+.form-body {
+  background-color: rgba(12, 0, 54, 1);
+  color: rgba(119, 171, 68, 1);
+}
+
+// styling for select expense and select income buttons
+.select-expense-income {
+  //   padding-left: 5vw;
+  @include media("<=phone") {
+    width: 40vw;
+    height: 3vh;
+  }
+  @include media(">phone") {
+    // margin-left: 4vw;
+    width: 10vw;
+    height: 2vh;
+  }
+  // width: 25vw;
+  background: #f9f9f9 0% 0% no-repeat padding-box;
+  border-radius: 24px;
+  opacity: 1;
+  color: rgba(119, 171, 68, 1);
+}
+
+// styling for enter amount button for both expense and income
+.enter-amount {
+  @include media("<=phone") {
+    width: 35vw;
+    height: 2.5vh;
+  }
+  @include media(">phone") {
+    // margin-left: 4vw;
+    width: 10vw;
+    height: 2vh;
+    // text-align: start;
+  }
+  // width: 23vw;
+  // height: 2.5vh;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  border: 2px solid rgba(62, 62, 62, 1);
+  opacity: 1;
+  color: rgba(119, 171, 68, 1);
+}
+
+// styling for both expense and income date buttons
+.select-date {
+  @include media("<=phone") {
+    width: 25vw;
+    height: 3vh;
+  }
+  @include media(">phone") {
+    // margin-left: 4vw;
+    width: 5vw;
+    height: 2.5vh;
+    // margin-right: 70px;
+  }
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  border: 2px solid rgba(62, 62, 62, 1);
+  opacity: 1;
+  color: rgba(119, 171, 68, 1);
+}
+
+// styling for both income and expense buttons
+.submit-button {
+  @include media("<=phone") {
+    width: 25vw;
+    height: 3vh;
+  }
+  @include media(">phone") {
+    // margin-left: 4vw;
+    width: 5vw;
+    height: 2.5vh;
+  }
+  // width: 10vw;
+  // height: 2.5vh;
+  background: var(--unnamed-color-77ab44) 0% 0% no-repeat padding-box;
+  background: rgba(119, 171, 68, 1) 0% 0% no-repeat padding-box;
+  opacity: 1;
+  color: white;
+}
+
+.expense-spacing {
+  @include media(">phone") {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 2vh 40vw;
+    width: 60vw;
+  }
+  @include media("<=phone") {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 2vh 20vw;
+    width: 60vw;
+  }
+}
+.labels {
+  text-align: start;
+  width: 150px;
+}

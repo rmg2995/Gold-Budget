@@ -1,0 +1,155 @@
+@import "../breakpoints/breakpoints.scss";
+:root {
+  /* Colors: */
+  --unnamed-color-081390: #081390;
+  --unnamed-color-cea4de: #cea4de;
+  --unnamed-color-92e3e3: #92e3e3;
+  --unnamed-color-8be066: #8be066;
+  --unnamed-color-fefefe: #fefefe;
+  --unnamed-color-fd6060: #fd6060;
+  --unnamed-color-349d06: #349d06;
+
+  /* Font/text values */
+  --unnamed-font-family-futura-pt: Futura PT;
+  --unnamed-font-family-futura: Futura;
+  --unnamed-font-style-medium: Medium;
+  --unnamed-font-style-bold: Bold;
+  --unnamed-font-size-14: 14px;
+  --unnamed-font-size-18: 18px;
+  --unnamed-font-size-20: 20px;
+  --unnamed-font-size-32: 32px;
+  --unnamed-character-spacing-0: 0px;
+  --unnamed-line-spacing-19: 19px;
+  --unnamed-line-spacing-25: 25px;
+  --unnamed-line-spacing-27: 27px;
+  --unnamed-line-spacing-41: 41px;
+}
+
+/* Character Styles */
+// .unnamed-character-style-1 {
+//   font-family: var(--unnamed-font-family-futura-pt);
+//   font-style: var(--unnamed-font-style-medium);
+//   font-size: var(--unnamed-font-size-32);
+//   line-height: var(--unnamed-line-spacing-41);
+//   letter-spacing: var(--unnamed-character-spacing-0);
+//   color: var(--unnamed-color-081390);
+// }
+// .unnamed-character-style-2 {
+//   font-family: var(--unnamed-font-family-futura);
+//   font-style: var(--unnamed-font-style-medium);
+//   font-size: var(--unnamed-font-size-14);
+//   line-height: var(--unnamed-line-spacing-19);
+//   letter-spacing: var(--unnamed-character-spacing-0);
+//   color: var(--unnamed-color-081390);
+// }
+// .unnamed-character-style-3 {
+//   font-family: var(--unnamed-font-family-futura);
+//   font-style: var(--unnamed-font-style-medium);
+//   font-size: var(--unnamed-font-size-14);
+//   line-height: var(--unnamed-line-spacing-19);
+//   letter-spacing: var(--unnamed-character-spacing-0);
+//   color: var(--unnamed-color-fefefe);
+// }
+// .unnamed-character-style-4 {
+//   font-family: var(--unnamed-font-family-futura);
+//   font-style: var(--unnamed-font-style-medium);
+//   font-size: var(--unnamed-font-size-18);
+//   line-height: var(--unnamed-line-spacing-25);
+//   letter-spacing: var(--unnamed-character-spacing-0);
+//   color: var(--unnamed-color-081390);
+// }
+// .unnamed-character-style-5 {
+//   font-family: var(--unnamed-font-family-futura);
+//   font-style: var(--unnamed-font-style-bold);
+//   font-size: var(--unnamed-font-size-20);
+//   line-height: var(--unnamed-line-spacing-27);
+//   letter-spacing: var(--unnamed-character-spacing-0);
+//   color: var(--unnamed-color-fefefe);
+// }
+
+/* Added styling to income and expense buttons */
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+//
+h1 {
+  color: #fefefe;
+}
+
+.income-button {
+  top: 132px;
+  left: 50px;
+  width: 144px;
+  height: 58px;
+  background: var(--unnamed-color-8be066) 0% 0% no-repeat padding-box;
+  background: rgb(6, 146, 6) 0% 0% no-repeat padding-box;
+  box-shadow: -4px 4px 4px #00000029;
+  opacity: 1;
+  font: Bold var(--unnamed-font-size-20) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-futura);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-fefefe);
+  text-align: center;
+  font: Bold 20px/27px Futura;
+  letter-spacing: 0px;
+  color: #fefefe;
+}
+
+.outcome-button {
+  top: 132px;
+  left: 223px;
+  width: 144px;
+  height: 58px;
+  background: var(--unnamed-color-fd6060) 0% 0% no-repeat padding-box;
+  background: rgb(130, 6, 6) 0% 0% no-repeat padding-box;
+  box-shadow: -4px 4px 4px #00000029;
+  opacity: 1;
+  font: Bold var(--unnamed-font-size-20) / var(--unnamed-line-spacing-27)
+    var(--unnamed-font-family-futura);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-fefefe);
+  text-align: center;
+  font: Bold 20px/27px Futura;
+  letter-spacing: 0px;
+  color: #fefefe;
+  opacity: 1;
+}
+
+.goal {
+  color: rgba(52, 157, 31, 1);
+  padding-left: 15vh;
+}
+.actual {
+  color: rgba(253, 96, 96, 1);
+}
+
+/* Added styling to pie charts */
+.PieCharts {
+  @include media("<=phone") {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  @include media(">phone") {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+  }
+}
+
+/* Added styling for transactions at the bottom of home page */
+.transaction-display {
+  list-style: none;
+  padding-bottom: 10vh;
+}
+.transaction-list {
+  // text-align: left;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  // width: 100px;
+  // align-items: flex-start;
+  // float: left;
+}

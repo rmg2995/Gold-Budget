@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import actions from '../../api/index'
+import TheContext from '../../TheContext';
 
 
 function LogIn(props){
@@ -11,10 +12,12 @@ function LogIn(props){
         console.log(email, password)
         actions.logIn({email, password}).then(user=> {
             console.log(user.data)
-            props.setUser({...user.data})  
+            setUser({...user.data})  
         }).catch( response => console.error(response));
 
     }
+
+    const { history, user, setUser } = React.useContext(TheContext); 
     return (
         <Fragment>
             <h2>LogIn</h2>
