@@ -18,6 +18,7 @@ function LogIn(props){
     }
 
     const { history, user, setUser } = React.useContext(TheContext); 
+    
     return (
         <Fragment>
             <h2>LogIn</h2>
