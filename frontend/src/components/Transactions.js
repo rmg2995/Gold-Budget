@@ -233,7 +233,6 @@ const Transactions = () => {
 
     setStartDate(start);
     setEndDate(end);
-
     filterTransactions();
     displayExpenseObj();
 
