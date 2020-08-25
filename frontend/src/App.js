@@ -67,7 +67,7 @@ const App = () => {
           <Route
             exact
             path="/"
-            render={(props) => <Home {...props} userId={user} />}
+            render={(props) => <Home {...props} />}
           />
           <Route
             exact
