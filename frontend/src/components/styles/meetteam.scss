@@ -1,0 +1,48 @@
+// @import "./variables.scss";
+// // @import "./styles/styles";
+// // @import "./styles/home";
+
+// footer {
+//   height: 250px;
+//   @include flexColumn();
+//   background-color: #00804f;
+//   color: white;
+
+//   i {
+//     color: white;
+//   }
+// }
+
+// .aboutus {
+//   @include flexColumn();
+//   margin-top: 10%;
+
+//   .aboutTitle {
+//     @include flexColumn();
+//     font-size: 30px;
+//     border-bottom: 1px solid black;
+//     padding-bottom: 5vh;
+//     margin: auto 50vh;
+//   }
+
+//   .usinfo {
+//     @include flexRow();
+//     background-color: #f1f1f1;
+//   }
+
+//   .roy,
+//   .valerie,
+//   .daniel {
+//     border: 1px solid black;
+//     border-radius: 20px;
+//     background-color: #f1f1f1;
+//     padding: 50px 70px;
+//     box-shadow: 20px 20px black;
+//     margin: 10vh 7vh;
+
+//     .githubLinkedIn {
+//       @include flexRow();
+//       background-color: #f1f1f1;
+//     }
+//   }
+// }
