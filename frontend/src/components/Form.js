@@ -12,7 +12,7 @@ const Form = (props) => {
   let [startDate, setStartDate] = useState(new Date());
   let [amount, setAmount] = useState(null);
   let [incomeType, setIncomeType] = useState("");
-  let [incomeAmount, setIncomeAmount] = useState(null);
+  let [amountIncome, setamountIncome] = useState(0);
 
   const submitForm = async (e, type) => {
     console.log(type);
@@ -23,7 +23,7 @@ const Form = (props) => {
       startDate: startDate,
       amount: amount,
       incomeType: incomeType,
-      incomeAmount: incomeAmount,
+      amountIncome: amountIncome,
       user: user._id,
     };
     let res =
@@ -136,7 +136,7 @@ const Form = (props) => {
           <label className="labels">Amount</label>
           <input
             className="enter-amount"
-            onChange={(e) => setIncomeAmount(e.target.value)}
+            onChange={(e) => setamountIncome(e.target.value)}
             type="Number"
             step="0.01"
             id=""

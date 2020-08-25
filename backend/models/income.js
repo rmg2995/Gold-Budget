@@ -9,10 +9,10 @@ const incomeSchema = new Schema({
   frequencyIncome: String,
   amountIncome: Number,
   startDate: Date,
-  totalIncome: {
-    type: Number,
-    default: 0,
-  },
+  // totalIncome: {
+  //   type: Number,
+  //   default: 0,
+  // },
 
   user: { type: Schema.Types.ObjectId, ref: "User" }, //required: true put later
   //   name: String,
