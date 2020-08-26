@@ -32,7 +32,7 @@ const Form = (props) => {
         let incomeObj = {
           incomeType: incomeType,
           amountIncome: parseInt(amountIncome),
-          startDate: startDate,
+          startDate: startDate.toString(),
         };
         let tempIncomesCopy = [...tempIncomes];
         tempIncomesCopy.push(incomeObj);
