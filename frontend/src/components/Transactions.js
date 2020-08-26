@@ -13,8 +13,8 @@ const Transactions = () => {
   let [toggleFilter, setToggleFilter] = useState(false);
   let [grandTotal, setGrandTotal] = useState(0);
   let [expenseObj, setExpenseObj] = useState({});
-  let [startDate, setStartDate] = useState(new Date());
-  let [endDate, setEndDate] = useState(null);
+  let [startDate, setStartDate] = useState("");
+  let [endDate, setEndDate] = useState("");
 
   const { user } = React.useContext(TheContext);
 
