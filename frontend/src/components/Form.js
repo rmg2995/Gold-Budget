@@ -15,54 +15,58 @@ const Form = (props) => {
   let [amountIncome, setAmountIncome] = useState(null);
 
   const submitForm = async (e, type) => {
-    if(user==undefined){
+    if (user == undefined) {
       e.preventDefault();
-      if(type === 'e'){
+      if (type === "e") {
         let expenseObj = {
           expenseType: expenseType,
           frequency: frequency,
-          startDate: startDate,
-          amount: parseInt(amount)
+          startDate: startDate.toString(),
+          amount: parseInt(amount),
         };
-        let tempExpensesCopy = [...tempExpenses]
-        tempExpensesCopy.push(expenseObj)
-        setTempExpenses(tempExpensesCopy)
+        let tempExpensesCopy = [...tempExpenses];
+        tempExpensesCopy.push(expenseObj);
+        setTempExpenses(tempExpensesCopy);
+        alert("Success! You have added a transaction!");
+      } else {
+        let incomeObj = {
+          incomeType: incomeType,
+          amountIncome: parseInt(amountIncome),
+          startDate: startDate,
+        };
+        let tempIncomesCopy = [...tempIncomes];
+        tempIncomesCopy.push(incomeObj);
+        setTempIncomes(tempIncomesCopy);
         alert("Success! You have added a transaction!");
       }
-      else{
-      let incomeObj = {
+    } else {
+      console.log(type);
+      e.preventDefault();
+      let obj = {
+        expenseType: expenseType,
+        frequency: frequency,
+        startDate: startDate,
+        amount: amount,
         incomeType: incomeType,
-        amountIncome: parseInt(amountIncome),
-        startDate: startDate
-      }
-      let tempIncomesCopy = [...tempIncomes]
-      tempIncomesCopy.push(incomeObj)
-      setTempIncomes(tempIncomesCopy)
+        amountIncome: amountIncome,
+        user: user._id,
+      };
+      let res =
+        type === "e"
+          ? await actions.expenseCount(obj)
+          : await actions.incomeCount(obj);
       alert("Success! You have added a transaction!");
+      // this.formRef.reset();
     }
-  }
-    else{
-    console.log(type);
-    e.preventDefault();
-    let obj = {
-      expenseType: expenseType,
-      frequency: frequency,
-      startDate: startDate,
-      amount: amount,
-      incomeType: incomeType,
-      amountIncome: amountIncome,
-      user: user._id
-    };
-    let res =
-      type === "e"
-        ? await actions.expenseCount(obj)
-        : await actions.incomeCount(obj);
-    alert("Success! You have added a transaction!");
-    // this.formRef.reset();
-  }
-};
+  };
 
-  const { user, tempExpenses, setTempExpenses, tempIncomes, setTempIncomes } = React.useContext(TheContext);
+  const {
+    user,
+    tempExpenses,
+    setTempExpenses,
+    tempIncomes,
+    setTempIncomes,
+  } = React.useContext(TheContext);
 
   return (
     <div>
