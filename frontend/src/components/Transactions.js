@@ -60,16 +60,6 @@ const Transactions = () => {
             <td>{eachTransaction.expenseType}</td>
             <td>{eachTransaction.startDate.slice(0, 10)}</td>
             <td>${eachTransaction.amount}</td>
-            <button
-              className="delete-btn"
-              onClick={() =>
-                user === undefined
-                  ? deleteTempTransaction(i, "expense")
-                  : deleteTransaction(i, eachTransaction._id, "expense")
-              }
-            >
-              Delete
-            </button>
           </tr>
         );
       }
@@ -84,105 +74,10 @@ const Transactions = () => {
             <td>{eachTransaction.incomeType}</td>
             <td>{eachTransaction.startDate.slice(0, 10)}</td>
             <td>${eachTransaction.amountIncome}</td>
-            <button
-              className="delete-btn"
-              onClick={() =>
-                user === undefined
-                  ? deleteTempTransaction(i, "income")
-                  : deleteTransaction(i, eachTransaction._id, "income")
-              }
-            >
-              Delete
-            </button>
           </tr>
         );
       }
     });
-  };
-  const deleteTempTransaction = (i, list) => {
-    let deleteTempExpense = [...tempExpenses];
-    let deleteTempIncome = [...tempIncomes];
-    if (list == "expense") {
-      deleteTempExpense.splice(i, 1);
-      setTempExpenses(deleteTempExpense);
-    } else {
-      deleteTempIncome.splice(i, 1);
-      setTempIncomes(deleteTempIncome);
-    }
-    let expenseAmount = 0;
-    for (let e of deleteTempExpense) {
-      // console.log(e);
-      if (e.amount) expenseAmount += e.amount;
-    }
-    let incomeAmount = 0;
-    for (let i of deleteTempIncome) {
-      // console.log(i);
-      if (i.amountIncome) incomeAmount += i.amountIncome;
-    }
-    let expenseObjCopy = {};
-    deleteTempExpense.forEach((eachExpense) => {
-      if (expenseObjCopy[eachExpense.expenseType]) {
-        expenseObjCopy[eachExpense.expenseType] += eachExpense.amount;
-      } else {
-        expenseObjCopy[eachExpense.expenseType] = eachExpense.amount;
-      }
-    });
-    let incomeObjCopy = {};
-    deleteTempExpense.forEach((eachIncome) => {
-      if (incomeObjCopy[eachIncome.incomeType]) {
-        incomeObjCopy[eachIncome.incomeType] += eachIncome.amount;
-      } else {
-        incomeObjCopy[eachIncome.incomeType] = eachIncome.amount;
-      }
-    });
-    let total = incomeAmount - expenseAmount;
-    setGrandTotal(total);
-    setExpenseObj(expenseObjCopy);
-  };
-
-  const deleteTransaction = async (i, id, list) => {
-    let deleteExpense = [...filterExpense];
-    let deleteIncome = [...filterIncome];
-    const response = await actions.expenseDelete(id, list);
-    console.log(response.data);
-    if (list == "expense") {
-      deleteExpense.splice(i, 1);
-    } else {
-      deleteIncome.splice(i, 1);
-    }
-    let expenseAmount = 0;
-    for (let e of deleteExpense) {
-      // console.log(e);
-      if (e.amount) expenseAmount += e.amount;
-    }
-    let incomeAmount = 0;
-    for (let i of deleteIncome) {
-      // console.log(i);
-      if (i.amountIncome) incomeAmount += i.amountIncome;
-    }
-    let expenseObjCopy = {};
-    deleteExpense.forEach((eachExpense) => {
-      if (expenseObjCopy[eachExpense.expenseType]) {
-        expenseObjCopy[eachExpense.expenseType] += eachExpense.amount;
-      } else {
-        expenseObjCopy[eachExpense.expenseType] = eachExpense.amount;
-      }
-    });
-    let incomeObjCopy = {};
-    deleteExpense.forEach((eachIncome) => {
-      if (incomeObjCopy[eachIncome.incomeType]) {
-        incomeObjCopy[eachIncome.incomeType] += eachIncome.amount;
-      } else {
-        incomeObjCopy[eachIncome.incomeType] = eachIncome.amount;
-      }
-    });
-    let total = incomeAmount - expenseAmount;
-
-    setFilterExpense(deleteExpense);
-    setFilterIncome(deleteIncome);
-
-    setGrandTotal(total);
-    setExpenseObj(expenseObjCopy);
   };
 
   const oneBigLoop = (expense, income) => {
