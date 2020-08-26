@@ -16,38 +16,43 @@ const Transactions = () => {
   let [startDate, setStartDate] = useState("");
   let [endDate, setEndDate] = useState("");
 
-  const { user, tempExpenses, tempIncomes  } = React.useContext(TheContext);
+  const {
+    user,
+    tempExpenses,
+    tempIncomes,
+    setTempExpenses,
+    setTempIncomes,
+  } = React.useContext(TheContext);
 
   useEffect(() => {
-    if(user==undefined){
-      console.log('edd', tempExpenses)
-      console.log('edd', tempIncomes)
-      oneBigLoop(tempExpenses, tempIncomes)
+    if (user == undefined) {
+      console.log("edd", tempExpenses);
+      console.log("edd", tempIncomes);
+      oneBigLoop(tempExpenses, tempIncomes);
+    } else {
+      async function getTransacitons() {
+        console.log(user);
+        //let res = await actions.transactions();
+
+        const [resExpense, resIncome] = await Promise.all([
+          actions.transactionsexpense(""),
+          actions.transactionsincome(""),
+        ]);
+        console.log("whatever", resIncome);
+        setTransactionExpense(resExpense.data);
+        setTransactionIncome(resIncome.data);
+        setFilterExpense(resExpense.data);
+        setFilterIncome(resIncome.data);
+
+        oneBigLoop(resExpense.data, resIncome.data);
+      }
+      getTransacitons();
     }
-    else{
-    async function getTransacitons() {
-      console.log(user);
-      //let res = await actions.transactions();
+  }, []);
 
-      const [resExpense, resIncome] = await Promise.all([
-        actions.transactionsexpense(""),
-        actions.transactionsincome(""),
-      ]);
-      console.log("whatever", resIncome);
-      setTransactionExpense(resExpense.data);
-      setTransactionIncome(resIncome.data);
-      setFilterExpense(resExpense.data);
-      setFilterIncome(resIncome.data);
-
-      oneBigLoop(resExpense.data, resIncome.data);
-    }
-    getTransacitons();
-  }
-}, []);
-
-  const displayTransactionsExpense = () => {
-    console.log(filterExpense);
-    return filterExpense?.map((eachTransaction, i) => {
+  const displayTransactionsExpense = (arr) => {
+    // console.log(filterExpense);
+    return arr?.map((eachTransaction, i) => {
       if (eachTransaction.expenseType) {
         console.log(eachTransaction);
         return (
@@ -58,7 +63,9 @@ const Transactions = () => {
             <button
               className="delete-btn"
               onClick={() =>
-                deleteTransaction(i, eachTransaction._id, "expense")
+                user === undefined
+                  ? deleteTempTransaction(i, "expense")
+                  : deleteTransaction(i, eachTransaction._id, "expense")
               }
             >
               Delete
@@ -69,8 +76,8 @@ const Transactions = () => {
     });
   };
 
-  const displayTransactionsIncome = () => {
-    return filterIncome?.map((eachTransaction, i) => {
+  const displayTransactionsIncome = (arr) => {
+    return arr?.map((eachTransaction, i) => {
       if (eachTransaction.incomeType) {
         return (
           <tr className="row">
@@ -80,7 +87,9 @@ const Transactions = () => {
             <button
               className="delete-btn"
               onClick={() =>
-                deleteTransaction(i, eachTransaction._id, "income")
+                user === undefined
+                  ? deleteTempTransaction(i, "income")
+                  : deleteTransaction(i, eachTransaction._id, "income")
               }
             >
               Delete
@@ -89,6 +98,46 @@ const Transactions = () => {
         );
       }
     });
+  };
+  const deleteTempTransaction = (i, list) => {
+    let deleteTempExpense = [...tempExpenses];
+    let deleteTempIncome = [...tempIncomes];
+    if (list == "expense") {
+      deleteTempExpense.splice(i, 1);
+      setTempExpenses(deleteTempExpense);
+    } else {
+      deleteTempIncome.splice(i, 1);
+      setTempIncomes(deleteTempIncome);
+    }
+    let expenseAmount = 0;
+    for (let e of deleteTempExpense) {
+      // console.log(e);
+      if (e.amount) expenseAmount += e.amount;
+    }
+    let incomeAmount = 0;
+    for (let i of deleteTempIncome) {
+      // console.log(i);
+      if (i.amountIncome) incomeAmount += i.amountIncome;
+    }
+    let expenseObjCopy = {};
+    deleteTempExpense.forEach((eachExpense) => {
+      if (expenseObjCopy[eachExpense.expenseType]) {
+        expenseObjCopy[eachExpense.expenseType] += eachExpense.amount;
+      } else {
+        expenseObjCopy[eachExpense.expenseType] = eachExpense.amount;
+      }
+    });
+    let incomeObjCopy = {};
+    deleteTempExpense.forEach((eachIncome) => {
+      if (incomeObjCopy[eachIncome.incomeType]) {
+        incomeObjCopy[eachIncome.incomeType] += eachIncome.amount;
+      } else {
+        incomeObjCopy[eachIncome.incomeType] = eachIncome.amount;
+      }
+    });
+    let total = incomeAmount - expenseAmount;
+    setGrandTotal(total);
+    setExpenseObj(expenseObjCopy);
   };
 
   const deleteTransaction = async (i, id, list) => {
@@ -138,21 +187,19 @@ const Transactions = () => {
 
   const oneBigLoop = (expense, income) => {
     //all my math and big loop
-    console.log('expense: ', expense);
-    console.log('income: ' ,income)
+    console.log(expense);
     let expenseAmount = 0;
     for (let e of expense) {
       // console.log(e);
       if (e.amount) expenseAmount += e.amount;
     }
-    console.log('expense amount: ' ,expenseAmount)
     let incomeAmount = 0;
     for (let i of income) {
       // console.log(i);
       if (i.amountIncome) incomeAmount += i.amountIncome;
     }
     let total = incomeAmount - expenseAmount;
-    console.log('income amount: ',incomeAmount)
+
     let expenseObj = {};
     for (let e of expense) {
       // if (e.expenseType == "restaurant") expenseCategories += e.amount;
@@ -270,7 +317,11 @@ const Transactions = () => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{displayTransactionsIncome()}</tbody>
+        <tbody>
+          {user === undefined
+            ? displayTransactionsIncome(tempIncomes)
+            : displayTransactionsIncome(filterIncome)}
+        </tbody>
       </table>
       <h1>Expense</h1>
       <table className="table expense-table">
@@ -282,7 +333,11 @@ const Transactions = () => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{displayTransactionsExpense()}</tbody>
+        <tbody>
+          {user === undefined
+            ? displayTransactionsExpense(tempExpenses)
+            : displayTransactionsExpense(filterExpense)}
+        </tbody>
       </table>
       <h1>Net Income</h1>${grandTotal}
       <br />
