@@ -15,6 +15,33 @@ const Form = (props) => {
   let [amountIncome, setAmountIncome] = useState(null);
 
   const submitForm = async (e, type) => {
+    if(user==undefined){
+      e.preventDefault();
+      if(type === 'e'){
+        let expenseObj = {
+          expenseType: expenseType,
+          frequency: frequency,
+          startDate: startDate,
+          amount: parseInt(amount)
+        };
+        let tempExpensesCopy = [...tempExpenses]
+        tempExpensesCopy.push(expenseObj)
+        setTempExpenses(tempExpensesCopy)
+        alert("Success! You have added a transaction!");
+      }
+      else{
+      let incomeObj = {
+        incomeType: incomeType,
+        amountIncome: parseInt(amountIncome),
+        startDate: startDate
+      }
+      let tempIncomesCopy = [...tempIncomes]
+      tempIncomesCopy.push(incomeObj)
+      setTempIncomes(tempIncomesCopy)
+      alert("Success! You have added a transaction!");
+    }
+  }
+    else{
     console.log(type);
     e.preventDefault();
     let obj = {
@@ -24,7 +51,7 @@ const Form = (props) => {
       amount: amount,
       incomeType: incomeType,
       amountIncome: amountIncome,
-      user: user._id,
+      user: user._id
     };
     let res =
       type === "e"
@@ -32,9 +59,10 @@ const Form = (props) => {
         : await actions.incomeCount(obj);
     alert("Success! You have added a transaction!");
     // this.formRef.reset();
-  };
+  }
+};
 
-  const { user } = React.useContext(TheContext);
+  const { user, tempExpenses, setTempExpenses, tempIncomes, setTempIncomes } = React.useContext(TheContext);
 
   return (
     <div>
