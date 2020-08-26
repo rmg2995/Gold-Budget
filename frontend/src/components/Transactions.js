@@ -16,9 +16,15 @@ const Transactions = () => {
   let [startDate, setStartDate] = useState("");
   let [endDate, setEndDate] = useState("");
 
-  const { user } = React.useContext(TheContext);
+  const { user, tempExpenses, tempIncomes  } = React.useContext(TheContext);
 
   useEffect(() => {
+    if(user==undefined){
+      console.log('edd', tempExpenses)
+      console.log('edd', tempIncomes)
+      oneBigLoop(tempExpenses, tempIncomes)
+    }
+    else{
     async function getTransacitons() {
       console.log(user);
       //let res = await actions.transactions();
@@ -36,7 +42,8 @@ const Transactions = () => {
       oneBigLoop(resExpense.data, resIncome.data);
     }
     getTransacitons();
-  }, []);
+  }
+}, []);
 
   const displayTransactionsExpense = () => {
     console.log(filterExpense);
@@ -131,19 +138,21 @@ const Transactions = () => {
 
   const oneBigLoop = (expense, income) => {
     //all my math and big loop
-    console.log(expense);
+    console.log('expense: ', expense);
+    console.log('income: ' ,income)
     let expenseAmount = 0;
     for (let e of expense) {
       // console.log(e);
       if (e.amount) expenseAmount += e.amount;
     }
+    console.log('expense amount: ' ,expenseAmount)
     let incomeAmount = 0;
     for (let i of income) {
       // console.log(i);
       if (i.amountIncome) incomeAmount += i.amountIncome;
     }
     let total = incomeAmount - expenseAmount;
-
+    console.log('income amount: ',incomeAmount)
     let expenseObj = {};
     for (let e of expense) {
       // if (e.expenseType == "restaurant") expenseCategories += e.amount;
@@ -233,7 +242,6 @@ const Transactions = () => {
 
     setStartDate(start);
     setEndDate(end);
-
     filterTransactions();
     displayExpenseObj();
 

@@ -19,6 +19,8 @@ import Transactions from "./components/Transactions";
 import MeetTeam from "./components/MeetTeam";
 const App = () => {
   let [user, setUser] = useState(null);
+  let [tempExpenses, setTempExpenses] = useState([])
+  let [tempIncomes, setTempIncomes] = useState([])
 
   useEffect(() => {
     async function getUser() {
@@ -37,7 +39,7 @@ const App = () => {
   const history = useHistory();
 
   return (
-    <TheContext.Provider value={{ history, user, setUser }}>
+    <TheContext.Provider value={{ history, user, setUser, tempExpenses, setTempExpenses, tempIncomes, setTempIncomes }}>
       <div className="form-body">
         <Navbar />
 
