@@ -20,7 +20,7 @@ const Transactions = () => {
 
   useEffect(() => {
     if(user==undefined){
-      console.log('edd', tempExpenses)
+      console.log('edd' , tempExpenses) 
       console.log('edd', tempIncomes)
       oneBigLoop(tempExpenses, tempIncomes)
     }
