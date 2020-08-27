@@ -16,13 +16,7 @@ const Transactions = () => {
   let [startDate, setStartDate] = useState("");
   let [endDate, setEndDate] = useState("");
 
-  const {
-    user,
-    tempExpenses,
-    tempIncomes,
-    setTempExpenses,
-    setTempIncomes,
-  } = React.useContext(TheContext);
+  const { user, tempExpenses, tempIncomes } = React.useContext(TheContext);
 
   useEffect(() => {
     if (user == undefined) {
@@ -49,22 +43,6 @@ const Transactions = () => {
       getTransacitons();
     }
   }, []);
-
-  const displayTransactionsExpense = (arr) => {
-    // console.log(filterExpense);
-    return arr?.map((eachTransaction, i) => {
-      if (eachTransaction.expenseType) {
-        console.log(eachTransaction);
-        return (
-          <tr className="row">
-            <td>{eachTransaction.expenseType}</td>
-            <td>{eachTransaction.startDate.slice(0, 10)}</td>
-            <td>${eachTransaction.amount}</td>
-          </tr>
-        );
-      }
-    });
-  };
 
   const displayTransactionsIncome = (arr) => {
     return arr?.map((eachTransaction, i) => {
@@ -202,6 +180,12 @@ const Transactions = () => {
         selectsRange
         inline
       />
+      {/* <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        dateFormat="MM/yyyy"
+        showMonthYearPicker
+      /> */}
       <h1>Income</h1>
       <table className="table">
         <thead>

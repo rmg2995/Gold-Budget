@@ -31,6 +31,23 @@ const Form = (props) => {
     setTempIncomes,
   } = React.useContext(TheContext);
 
+  const getTransacitons = async () => {
+    console.log(user);
+    //let res = await actions.transactions();
+
+    const [resExpense, resIncome] = await Promise.all([
+      actions.transactionsexpense(""),
+      actions.transactionsincome(""),
+    ]);
+    console.log("whatever", resIncome);
+    setTransactionExpense(resExpense.data);
+    setTransactionIncome(resIncome.data);
+    setFilterExpense(resExpense.data);
+    setFilterIncome(resIncome.data);
+
+    oneBigLoop(resExpense.data, resIncome.data);
+  };
+
   //component did mount, connects to backend
   useEffect(() => {
     if (user == undefined) {
@@ -38,22 +55,6 @@ const Form = (props) => {
       console.log("edd", tempIncomes);
       oneBigLoop(tempExpenses, tempIncomes);
     } else {
-      async function getTransacitons() {
-        console.log(user);
-        //let res = await actions.transactions();
-
-        const [resExpense, resIncome] = await Promise.all([
-          actions.transactionsexpense(""),
-          actions.transactionsincome(""),
-        ]);
-        console.log("whatever", resIncome);
-        setTransactionExpense(resExpense.data);
-        setTransactionIncome(resIncome.data);
-        setFilterExpense(resExpense.data);
-        setFilterIncome(resIncome.data);
-
-        oneBigLoop(resExpense.data, resIncome.data);
-      }
       getTransacitons();
     }
   }, []);
@@ -96,12 +97,14 @@ const Form = (props) => {
         amountIncome: amountIncome,
         user: user._id,
       };
+
       let res =
         type === "e"
           ? await actions.expenseCount(obj)
           : await actions.incomeCount(obj);
       alert("Success! You have added a transaction!");
-      // this.formRef.reset();
+      // this.formRef.reset()
+      getTransacitons();
     }
   };
 
