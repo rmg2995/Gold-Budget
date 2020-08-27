@@ -14,8 +14,8 @@ import {
   NotificationManager,
 } from "react-notifications";
 import Navbar from "./components/nav/Navbar";
-import Form from "./components/Form";
 import Transactions from "./components/Transactions";
+import Overview from "./components/Overview";
 import MeetTeam from "./components/MeetTeam";
 
 const App = () => {
@@ -95,13 +95,13 @@ const App = () => {
           />
           <Route
             exact
-            path="/add-transactions"
-            render={(props) => <Form {...props} />}
+            path="/transactions"
+            render={(props) => <Transactions {...props} />}
           />
           <Route
             exact
-            path="/transactions"
-            render={(props) => <Transactions {...props} />}
+            path="/overview"
+            render={(props) => <Overview {...props} />}
           />
           <Route exact path="/meet-team" render={() => <MeetTeam />} />
           <Route component={NotFound} />

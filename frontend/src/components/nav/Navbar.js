@@ -29,11 +29,11 @@ const Navbar = (props) => {
           {/* <Link className="menu-item" to="/profile">
               Profile
             </Link> */}
+          <Link className="menu-item" to="/overview">
+            Overview
+          </Link>
           <Link className="menu-item" to="/transactions">
             Transactions
-          </Link>
-          <Link className="menu-item" to="/add-transactions">
-            Add Transactions
           </Link>
           <Link className="menu-item" to="/meet-team">
             Meet The Team

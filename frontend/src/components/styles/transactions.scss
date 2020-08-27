@@ -1,4 +1,5 @@
 @import "../breakpoints/breakpoints.scss";
+
 .transactions {
   list-style: none;
   // padding-bottom: 10vh;
@@ -8,14 +9,17 @@
   display: flex;
   justify-content: space-around;
 }
+
 .delete-btn {
   background: #fd6060 0% 0% no-repeat padding-box;
   color: white;
 }
+
 .table {
   @include media("<=phone") {
     padding: 0 12vw;
   }
+
   @include media(">phone") {
     // margin-left: 4vw;
     // display: flex;
@@ -24,16 +28,20 @@
     // flex-direction: column;
     padding: 0 42vw;
   }
+
   td {
     white-space: nowrap;
   }
+
   // display: flex;
   // justify-content: center;
 }
+
 .expense-table {
   @include media("<=phone") {
     padding: 0 30px;
   }
+
   @include media(">phone") {
     // margin-left: 4vw;
     // display: flex;
@@ -43,6 +51,7 @@
     padding: 0 41vw;
   }
 }
+
 .expense-obj {
-  padding-bottom: 10vh;
+  padding-bottom: 5vh;
 }
