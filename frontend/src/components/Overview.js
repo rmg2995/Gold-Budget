@@ -10,7 +10,7 @@ const Transactions = () => {
   let [transactionsIncome, setTransactionIncome] = useState([]);
   let [filterExpense, setFilterExpense] = useState([]);
   let [filterIncome, setFilterIncome] = useState([]);
-  let [toggleFilter, setToggleFilter] = useState(false);
+  let [toggleFilter, setToggleFilter] = useState(true);
   let [grandTotal, setGrandTotal] = useState(0);
   let [expenseObj, setExpenseObj] = useState({});
   let [startDate, setStartDate] = useState("");
@@ -90,6 +90,7 @@ const Transactions = () => {
 
   const displayExpenseObj = () => {
     let displayExpense = []; // in is for obj
+    console.log(expenseObj);
     for (let e in expenseObj) {
       displayExpense.push(
         <li className="transactions">
@@ -162,13 +163,18 @@ const Transactions = () => {
 
     setStartDate(start);
     setEndDate(end);
+    // console.log(startDate, endDate, start, end);
     filterTransactions();
     displayExpenseObj();
 
     // setStartDate(start);
     // setEndDate(end);
   };
-
+  useEffect(() => {
+    //console.log(startDate, endDate);
+    filterTransactions();
+    displayExpenseObj();
+  }, [startDate, endDate]);
   return (
     <div>
       <br />
