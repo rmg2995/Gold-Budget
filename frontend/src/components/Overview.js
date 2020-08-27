@@ -19,7 +19,7 @@ const Transactions = () => {
   const { user, tempExpenses, tempIncomes } = React.useContext(TheContext);
 
   useEffect(() => {
-    if (user == undefined) {
+    if (user === undefined) {
       console.log("edd", tempExpenses);
       console.log("edd", tempIncomes);
       oneBigLoop(tempExpenses, tempIncomes);
@@ -84,13 +84,15 @@ const Transactions = () => {
       }
     }
     console.log(expenseObj);
+
     setGrandTotal(total);
     setExpenseObj(expenseObj);
   };
 
+  //Categories Total
   const displayExpenseObj = () => {
     let displayExpense = []; // in is for obj
-    console.log(expenseObj);
+    console.log("expense obj", expenseObj);
     for (let e in expenseObj) {
       displayExpense.push(
         <li className="transactions">
@@ -175,8 +177,12 @@ const Transactions = () => {
     filterTransactions();
     displayExpenseObj();
   }, [startDate, endDate]);
+
   return (
     <div>
+      <div>
+        <h1>Select the range of dates to overview your budget.</h1>
+      </div>
       <br />
       <DatePicker
         selected={startDate}

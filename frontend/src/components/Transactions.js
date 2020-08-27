@@ -9,7 +9,6 @@ import TheContext from "../TheContext";
 //hooks
 const Form = (props) => {
   let [expenseType, setExpenseType] = useState("");
-  let [frequency, setFrequency] = useState("");
   let [startDate, setStartDate] = useState(new Date());
   let [amount, setAmount] = useState(null);
   let [incomeType, setIncomeType] = useState("");
@@ -21,6 +20,8 @@ const Form = (props) => {
   let [filterIncome, setFilterIncome] = useState([]);
   let [grandTotal, setGrandTotal] = useState(0);
   let [expenseObj, setExpenseObj] = useState({});
+  let [notesIncome, setNotesIncome] = useState({});
+  let [notesExpense, setNotesExpense] = useState({});
 
   //context
   const {
@@ -66,7 +67,8 @@ const Form = (props) => {
       if (type === "e") {
         let expenseObj = {
           expenseType: expenseType,
-          frequency: frequency,
+          notesExpense: notesExpense,
+          otesIncome: notesIncome,
           startDate: startDate.toString(),
           amount: parseInt(amount),
         };
@@ -79,6 +81,7 @@ const Form = (props) => {
           incomeType: incomeType,
           amountIncome: parseInt(amountIncome),
           startDate: startDate.toString(),
+          notesIncome: notesIncome,
         };
         let tempIncomesCopy = [...tempIncomes];
         tempIncomesCopy.push(incomeObj);
@@ -90,7 +93,8 @@ const Form = (props) => {
       e.preventDefault();
       let obj = {
         expenseType: expenseType,
-        frequency: frequency,
+        notesExpense: notesExpense,
+        notesIncome: notesIncome,
         startDate: startDate,
         amount: amount,
         incomeType: incomeType,
@@ -117,6 +121,7 @@ const Form = (props) => {
         return (
           <tr className="row">
             <td>{eachTransaction.expenseType}</td>
+            <td>{eachTransaction.notesExpense}</td>
             <td>{eachTransaction.startDate.slice(0, 10)}</td>
             <td>${eachTransaction.amount}</td>
             <button
@@ -138,9 +143,11 @@ const Form = (props) => {
   const displayTransactionsIncome = (arr) => {
     return arr?.map((eachTransaction, i) => {
       if (eachTransaction.incomeType) {
+        console.log(eachTransaction);
         return (
           <tr className="row">
             <td>{eachTransaction.incomeType}</td>
+            <td>{eachTransaction.notesIncome}</td>
             <td>{eachTransaction.startDate.slice(0, 10)}</td>
             <td>${eachTransaction.amountIncome}</td>
             <button
@@ -280,6 +287,9 @@ const Form = (props) => {
 
   return (
     <div>
+      <div>
+        <h1>Add Expense</h1>
+      </div>
       <form action="/action_page.php" onSubmit={(e) => submitForm(e, "e")}>
         <div className="expense-spacing">
           <label className="labels" for="Expense">
@@ -306,16 +316,15 @@ const Form = (props) => {
           </select>
         </div>
         {/* <br /> */}
-        {/* <label for="Expense">Frequency</label>
-          <select onChange={this.handleChange} name="frequency" id="">
-            <option value="" disabled selected>
-              Select Frequency
-            </option>
-            <option value="one-time">One-time</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-          <br /> */}
+        <label for="Expense">Note</label>
+        <input
+          onChange={(e) => setNotesExpense(e.target.value)}
+          name="notes"
+          id=""
+          type="text"
+          placeholder="ie: McDonald's, Walmart, etc."
+        ></input>
+        <br />
         <div className="expense-spacing">
           <label className="labels">Amount</label>
 
@@ -346,6 +355,9 @@ const Form = (props) => {
         </div>
         <button className="submit-button">Submit</button>
       </form>
+      <div>
+        <h1>Add Income</h1>
+      </div>
       <form action="/action_page.php" onSubmit={(e) => submitForm(e)}>
         <div className="expense-spacing">
           <label className="labels" for="Income">
@@ -364,16 +376,16 @@ const Form = (props) => {
             <option value="tip">Tip</option>
           </select>
         </div>
-        {/* <label for="Income">Frequency</label>
-          <select onChange={this.handleChange} name="frequencyIncome" id="">
-            <option value="" disabled selected>
-              Select Frequency
-            </option>
-            <option value="one-time">One-time</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-          <br /> */}
+
+        <label for="Income">Note</label>
+        <input
+          onChange={(e) => setNotesIncome(e.target.value)}
+          name="notes"
+          id=""
+          type="text"
+          placeholder="ie: McDonald's, Walmart, etc."
+        ></input>
+        <br />
         <div className="expense-spacing">
           <label className="labels">Amount</label>
           <input
@@ -403,6 +415,9 @@ const Form = (props) => {
         </div>
         <button className="submit-button">Submit</button>
       </form>
+      <div>
+        <h1>Daily Transactions</h1>
+      </div>
       {user === undefined
         ? displayTransactionsIncome(tempIncomes)
         : displayTransactionsIncome(filterIncome)}
