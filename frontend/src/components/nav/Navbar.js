@@ -2,7 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import "../styles/navbar.scss";
 import { Link } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
-import Logo from "../images/iron-budget-logo.png";
+import Logo from "../images/image (1).png";
+
 // import Search from "./Search/search";
 
 const Navbar = (props) => {
@@ -10,7 +11,7 @@ const Navbar = (props) => {
     <div>
       <div className="navbar-phone">
         <Link to="/">
-          <img src={Logo} alt="iron-budget-logo" />
+          <img src={Logo} alt="iron-budget-logo" className="logo" />
         </Link>
 
         <Menu right>

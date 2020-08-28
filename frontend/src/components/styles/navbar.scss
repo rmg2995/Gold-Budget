@@ -1,3 +1,5 @@
+@import "../breakpoints/breakpoints.scss";
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -64,16 +66,23 @@
 
 /* Styling of overlay */
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+  background: #1e2330;
 }
+.logo {
+  @include media(">phone") {
+    width: 35vw;
+  }
+  @include media("<=phone") {
+    width: 100vw;
+  }
+}
+// .navbar-phone {
 
-/* .navbar-phone {
-  position: fixed;
-} */
+// }
 
 // .navbar-phone {
-//   position: fixed;
-//   background-color: white;
+//   // position: fixed;
+//   //background-color: white;
 //   width: 100vmin;
 //   z-index: 1;
 //   top: 0;

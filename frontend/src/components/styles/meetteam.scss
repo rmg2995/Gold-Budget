@@ -2,40 +2,39 @@
 // @import "./styles/styles";
 // @import "./styles/home";
 
-
 .aboutus {
+  @include flexColumn();
+  margin-top: 10%;
+
+  .aboutTitle {
     @include flexColumn();
-    margin-top: 10%;
+    font-size: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5vh;
+    margin: auto 50vh;
+    color: #77ab44;
+  }
 
-    .aboutTitle {
-        @include flexColumn();
-        font-size: 30px;
-        border-bottom: 1px solid black;
-        padding-bottom: 5vh;
-        margin: auto 50vh;
-        color: #77ab44
+  .usinfo {
+    @include flexColumn();
+    background-color: #1e2330;
+  }
+
+  .roy,
+  .valerie,
+  .andrew,
+  .mo {
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #1e2330;
+    padding: 50px 70px;
+    box-shadow: 20px 20px black;
+    margin: 10vh 7vh;
+
+    .githubLinkedIn {
+      @include flexRow();
+      background-color: #1e2330;
+      color: #77ab44;
     }
-
-    .usinfo {
-        @include flexColumn();
-        background-color: #0c0036;
-    }
-
-    .roy,
-    .valerie,
-    .andrew,
-    .mo {
-        border: 1px solid black;
-        border-radius: 20px;
-        background-color: #0c0036;
-        padding: 50px 70px;
-        box-shadow: 20px 20px black;
-        margin: 10vh 7vh;
-
-        .githubLinkedIn {
-            @include flexRow();
-            background-color: #0c0036;
-            color: #77ab44
-        }
-    }
+  }
 }
