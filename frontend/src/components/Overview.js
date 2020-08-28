@@ -181,7 +181,8 @@ const Transactions = () => {
   return (
     <div>
       <div>
-        <h1>Select the range of dates to overview your budget.</h1>
+        <h1>Add debit/credits first from the Transactions page</h1>
+        <h2>Select the range of dates to overview your budget.</h2>
       </div>
       <br />
       <DatePicker
