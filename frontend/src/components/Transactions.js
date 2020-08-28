@@ -418,13 +418,15 @@ const Form = (props) => {
       <div>
         <h1>Daily Transactions</h1>
       </div>
-      {user === undefined
-        ? displayTransactionsIncome(tempIncomes)
-        : displayTransactionsIncome(filterIncome)}
+      <div className="dailyTransaction">
+        {user === undefined
+          ? displayTransactionsIncome(tempIncomes)
+          : displayTransactionsIncome(filterIncome)}
 
-      {user === undefined
-        ? displayTransactionsExpense(tempExpenses)
-        : displayTransactionsExpense(filterExpense)}
+        {user === undefined
+          ? displayTransactionsExpense(tempExpenses)
+          : displayTransactionsExpense(filterExpense)}
+      </div>
     </div>
   );
 };
