@@ -7,7 +7,6 @@
 
 // styling for select expense and select income buttons
 .select-expense-income {
-
   //   padding-left: 5vw;
   @include media("<=phone") {
     width: 40vw;
@@ -115,6 +114,9 @@
 
 .dailyTransaction {
   position: relative;
-  margin-left: 43vw;
-  padding-bottom: 10vh
+  margin-left: 39vw;
+  padding-bottom: 10vh;
+}
+.input {
+  width: 10vw;
 }

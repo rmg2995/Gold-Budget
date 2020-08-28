@@ -206,7 +206,7 @@ const Transactions = () => {
             <th>Category</th>
             <th>Date</th>
             <th>Amount</th>
-            <th>Action</th>
+            {/* <th>Action</th> */}
           </tr>
         </thead>
         <tbody>

@@ -6,7 +6,7 @@ const incomeSchema = new Schema({
     enum: ["wage", "tip"],
     required: true,
   },
-  notes: String,
+  notesIncome: String,
   amountIncome: Number,
   startDate: Date,
   // totalIncome: {

@@ -68,7 +68,7 @@ const Form = (props) => {
         let expenseObj = {
           expenseType: expenseType,
           notesExpense: notesExpense,
-          otesIncome: notesIncome,
+          notesIncome: notesIncome,
           startDate: startDate.toString(),
           amount: parseInt(amount),
         };
@@ -316,15 +316,19 @@ const Form = (props) => {
           </select>
         </div>
         {/* <br /> */}
-        <label for="Expense">Note</label>
-        <input
-          onChange={(e) => setNotesExpense(e.target.value)}
-          name="notes"
-          id=""
-          type="text"
-          placeholder="ie: McDonald's, Walmart, etc."
-        ></input>
-        <br />
+        <div className="expense-spacing">
+          <label for="Expense" className="labels">
+            Note
+          </label>
+          <input
+            onChange={(e) => setNotesExpense(e.target.value)}
+            name="notesExpense"
+            id=""
+            type="text"
+            placeholder="ie: McDonald's, Walmart, etc."
+          ></input>
+        </div>
+        {/* <br /> */}
         <div className="expense-spacing">
           <label className="labels">Amount</label>
 
@@ -376,16 +380,20 @@ const Form = (props) => {
             <option value="tip">Tip</option>
           </select>
         </div>
-
-        <label for="Income">Note</label>
-        <input
-          onChange={(e) => setNotesIncome(e.target.value)}
-          name="notes"
-          id=""
-          type="text"
-          placeholder="ie: McDonald's, Walmart, etc."
-        ></input>
-        <br />
+        <div className="expense-spacing">
+          <label for="Income" className="labels">
+            Note
+          </label>
+          <input
+            onChange={(e) => setNotesIncome(e.target.value)}
+            name="notesIncome"
+            id=""
+            type="text"
+            placeholder="ie: McDonald's, Walmart, etc."
+            className="input"
+          ></input>
+        </div>
+        {/* <br /> */}
         <div className="expense-spacing">
           <label className="labels">Amount</label>
           <input
@@ -418,15 +426,28 @@ const Form = (props) => {
       <div>
         <h1>Daily Transactions</h1>
       </div>
-      <div className="dailyTransaction">
-        {user === undefined
-          ? displayTransactionsIncome(tempIncomes)
-          : displayTransactionsIncome(filterIncome)}
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Notes</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* <div className="dailyTransaction"> */}
+          {user === undefined
+            ? displayTransactionsIncome(tempIncomes)
+            : displayTransactionsIncome(filterIncome)}
 
-        {user === undefined
-          ? displayTransactionsExpense(tempExpenses)
-          : displayTransactionsExpense(filterExpense)}
-      </div>
+          {user === undefined
+            ? displayTransactionsExpense(tempExpenses)
+            : displayTransactionsExpense(filterExpense)}
+          {/* </div> */}
+        </tbody>
+      </table>
     </div>
   );
 };

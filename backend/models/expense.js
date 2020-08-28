@@ -15,7 +15,7 @@ const expenseSchema = new Schema({
       "travel",
     ],
   },
-  notes: {
+  notesExpense: {
     type: String,
   },
 
