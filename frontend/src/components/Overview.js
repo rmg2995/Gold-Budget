@@ -26,7 +26,7 @@ const Transactions = () => {
     } else {
       async function getTransacitons() {
         console.log(user);
-        //let res = await actions.transactions();
+        //let res = await actions.transactions(); deploy
 
         const [resExpense, resIncome] = await Promise.all([
           actions.transactionsexpense(""),
