@@ -34,7 +34,7 @@ const Form = (props) => {
 
   const getTransacitons = async () => {
     console.log(user);
-    //let res = await actions.transactions();
+    //let res = await actions.transactions(); deploying
 
     const [resExpense, resIncome] = await Promise.all([
       actions.transactionsexpense(""),
